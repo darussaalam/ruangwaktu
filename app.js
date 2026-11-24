@@ -25,6 +25,25 @@ const INITIAL_FRIENDS = [
   { id: "f6", name: "Sarah Cantikzz", avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Sarah&backgroundColor=ffd5dc", online: true, pin: "28114400", status: "Online via Opera Mini" }
 ];
 
+const INITIAL_FRIEND_REQUESTS = [
+  { id: "req_1", friendId: "f_agus", name: "Agus 'Anak Skate'", mutual: 14, avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Agus&backgroundColor=ffd5dc", pin: "24C11899", status: "Online via BBM" },
+  { id: "req_2", friendId: "f_nabila", name: "Nabila Cantikzz", mutual: 8, avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Nabila&backgroundColor=c0aede", pin: "27E43190", status: "Status: Galau bgt" }
+];
+
+const INITIAL_MESSAGE_THREADS = [
+  { id: "mth_1", friendId: "f1", name: "Rian 'Si Colekers'", avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Rian&backgroundColor=c0aede", snippet: "Wkwkwk jd ke warnet ga ntar mlm bro?", time: "10 menit lalu", unread: true },
+  { id: "mth_2", friendId: "f2", name: "Citra Putri Anggraini", avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Citra&backgroundColor=ffd5dc", snippet: "PING! PING! PING! Bales dong Yan..", time: "45 menit lalu", unread: true },
+  { id: "mth_3", friendId: "f4", name: "Dian 'Jempolers' Permata", avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Dian&backgroundColor=ffdfbf", snippet: "Sip gan, status lu udah gw like ya, like balik!", time: "2 jam lalu", unread: true }
+];
+
+const INITIAL_NOTIFICATIONS = [
+  { id: "notif_1", text: "<strong>Dian 'Jempolers'</strong> menyukai status Anda: <em>\"Jgn lp mkn ciang yach kmu...\"</em>", time: "5 menit yang lalu", icon: "👍", unread: true, type: "like" },
+  { id: "notif_2", text: "<strong>Citra Putri Anggraini</strong> mengomentari status Anda di Dinding.", time: "15 menit yang lalu", icon: "💬", unread: true, type: "comment" },
+  { id: "notif_3", text: "<strong>Bayu NinjaSaga</strong> baru saja mencolek Anda!", time: "40 menit yang lalu", icon: "👉", unread: true, type: "poke", friendName: "Bayu NinjaSaga" },
+  { id: "notif_4", text: "<strong>Rian 'Si Colekers'</strong> membagikan kiriman di grup <em>Barter PIN BB 2011</em>.", time: "1 jam yang lalu", icon: "👥", unread: true, type: "group" },
+  { id: "notif_5", text: "<strong>Eko PointBlank</strong> mengirimkan 10 Energy di Ninja Saga.", time: "3 jam yang lalu", icon: "🥷", unread: true, type: "game" }
+];
+
 const INITIAL_POSTS = [
   {
     id: "post_1",
@@ -35,6 +54,7 @@ const INITIAL_POSTS = [
     device: "melalui BlackBerry® Smartphones",
     content: "Jgn lp mkn ciang yach kmu.. jgn telat nnti cakit wkwkwk >.< #galau #statusviaBlackBerry",
     pinBb: "21A4FF90",
+    photo: "",
     likes: ["f2", "f4", "user_demo"],
     comments: [
       { id: "c1", author: "Citra Putri Anggraini", avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Citra&backgroundColor=ffd5dc", text: "Alay bgt lu Yan ampun deh wkwk", time: "14 menit yang lalu" },
@@ -50,6 +70,7 @@ const INITIAL_POSTS = [
     device: "melalui BlackBerry Bold 9700 Onyx",
     content: "Huft bosen bgt hr ini.. New PIN BB ya guys: 2A7F89C1, yg lama ke-wipe gara2 batere dicabut pas restart bb.. Invite yaa, no spam!!",
     pinBb: "2A7F89C1",
+    photo: "",
     likes: ["f1", "f3", "f4", "f5"],
     comments: [
       { id: "c3", author: "Bayu NinjaSaga", avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Bayu&backgroundColor=d1d4f9", text: "Udah gw invite ya Cit, accept dong", time: "30 menit yang lalu" }
@@ -64,6 +85,7 @@ const INITIAL_POSTS = [
     device: "melalui Ninja Saga Game",
     content: "Ada yg mau temenan buat saling gift energy di Ninja Saga gak? Kurang 5 lagi nih mau lawan boss level 40! Comment ya ntar gw add back langsung.",
     pinBb: "",
+    photo: "",
     likes: ["f1", "f5"],
     comments: [
       { id: "c4", author: "Eko PointBlank", avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=Eko&backgroundColor=c0aede", text: "Gw maen bro, ntar malem gw gift ya abis pulang sekolah.", time: "1 jam yang lalu" }
@@ -78,6 +100,7 @@ const INITIAL_POSTS = [
     device: "melalui Facebook for Android",
     content: "Jempolmu semangatku.. Siapa yg like status ini nanti gw colek balik 3x + wall to wall! No PHP yaa.. Salam jempolers se-Indonesia!",
     pinBb: "29E411B2",
+    photo: "",
     likes: ["f1", "f2", "f3", "f6"],
     comments: []
   }
@@ -106,7 +129,19 @@ const Storage = {
   setPosts: (posts) => localStorage.setItem("rw_posts", JSON.stringify(posts)),
   
   getFriends: () => JSON.parse(localStorage.getItem("rw_friends")) || INITIAL_FRIENDS,
-  setFriends: (friends) => localStorage.setItem("rw_friends", JSON.stringify(friends))
+  setFriends: (friends) => localStorage.setItem("rw_friends", JSON.stringify(friends)),
+
+  getFriendRequests: () => JSON.parse(localStorage.getItem("rw_friend_requests")) || INITIAL_FRIEND_REQUESTS,
+  setFriendRequests: (reqs) => localStorage.setItem("rw_friend_requests", JSON.stringify(reqs)),
+
+  getMessageThreads: () => JSON.parse(localStorage.getItem("rw_message_threads")) || INITIAL_MESSAGE_THREADS,
+  setMessageThreads: (threads) => localStorage.setItem("rw_message_threads", JSON.stringify(threads)),
+
+  getNotifications: () => JSON.parse(localStorage.getItem("rw_notifications")) || INITIAL_NOTIFICATIONS,
+  setNotifications: (notifs) => localStorage.setItem("rw_notifications", JSON.stringify(notifs)),
+
+  getPhotoUploadHistory: () => JSON.parse(localStorage.getItem("rw_photo_uploads")) || {},
+  setPhotoUploadHistory: (hist) => localStorage.setItem("rw_photo_uploads", JSON.stringify(hist))
 };
 
 // Web Audio API retro pop tone synthesizer
@@ -131,7 +166,7 @@ function playChatNotificationSound() {
     osc.start();
     osc.stop(ctx.currentTime + 0.16);
   } catch (err) {
-    // Ignore audio autoplay restrictions gracefully
+    // Ignore audio autoplay restrictions
   }
 }
 
@@ -140,6 +175,8 @@ const activeChats = {};
 
 // Application Controller
 const App = {
+  currentSelectedPhotoData: "",
+
   init() {
     this.cacheDom();
     this.bindEvents();
@@ -172,6 +209,15 @@ const App = {
     this.composerPinInput = document.getElementById("composerPinInput");
     this.pinTabBtn = document.getElementById("pinTabBtn");
     this.statusTabBtn = document.getElementById("statusTabBtn");
+    this.photoTabBtn = document.getElementById("photoTabBtn");
+
+    // Photo upload elements
+    this.composerPhotoRow = document.getElementById("composerPhotoRow");
+    this.composerPhotoInput = document.getElementById("composerPhotoInput");
+    this.photoStatusText = document.getElementById("photoStatusText");
+    this.photoPreviewWrap = document.getElementById("photoPreviewWrap");
+    this.photoPreviewImg = document.getElementById("photoPreviewImg");
+    this.btnRemovePhoto = document.getElementById("btnRemovePhoto");
     
     // Header user info
     this.headerUserAvatar = document.getElementById("headerUserAvatar");
@@ -180,6 +226,22 @@ const App = {
     this.headerMenu = document.getElementById("headerMenu");
     this.headerLogoutBtn = document.getElementById("headerLogoutBtn");
     this.headerSearchInput = document.getElementById("headerSearchInput");
+
+    // Header flyout buttons and panels
+    this.btnNotifFriends = document.getElementById("btnNotifFriends");
+    this.flyoutFriends = document.getElementById("flyoutFriends");
+    this.flyoutFriendsList = document.getElementById("flyoutFriendsList");
+    this.badgeFriends = document.getElementById("badgeFriends");
+
+    this.btnNotifMessages = document.getElementById("btnNotifMessages");
+    this.flyoutMessages = document.getElementById("flyoutMessages");
+    this.flyoutMessagesList = document.getElementById("flyoutMessagesList");
+    this.badgeMessages = document.getElementById("badgeMessages");
+
+    this.btnNotifGlobe = document.getElementById("btnNotifGlobe");
+    this.flyoutGlobe = document.getElementById("flyoutGlobe");
+    this.flyoutGlobeList = document.getElementById("flyoutGlobeList");
+    this.badgeGlobe = document.getElementById("badgeGlobe");
     
     // Left column
     this.leftAvatar = document.getElementById("leftAvatar");
@@ -201,6 +263,10 @@ const App = {
     this.profileBio = document.getElementById("profileBio");
     this.profileJoined = document.getElementById("profileJoined");
     this.profileFeedStream = document.getElementById("profileFeedStream");
+
+    // Sidebar Online Friends widget
+    this.sidebarOnlineFriendsList = document.getElementById("sidebarOnlineFriendsList");
+    this.sidebarOnlineCount = document.getElementById("sidebarOnlineCount");
     
     // Chat dock elements
     this.chatBarBtn = document.getElementById("chatBarBtn");
@@ -227,9 +293,47 @@ const App = {
     // Navigation and menu
     this.headerMenuBtn.addEventListener("click", (e) => {
       e.stopPropagation();
+      this.closeAllFlyouts();
       this.headerMenu.classList.toggle("active");
     });
-    document.addEventListener("click", () => this.headerMenu.classList.remove("active"));
+
+    // Flyout buttons click bindings
+    this.btnNotifFriends.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isActive = this.flyoutFriends.classList.contains("active");
+      this.closeAllFlyouts();
+      if (!isActive) {
+        this.renderFlyoutFriends();
+        this.flyoutFriends.classList.add("active");
+      }
+    });
+
+    this.btnNotifMessages.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isActive = this.flyoutMessages.classList.contains("active");
+      this.closeAllFlyouts();
+      if (!isActive) {
+        this.renderFlyoutMessages();
+        this.flyoutMessages.classList.add("active");
+      }
+    });
+
+    this.btnNotifGlobe.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isActive = this.flyoutGlobe.classList.contains("active");
+      this.closeAllFlyouts();
+      if (!isActive) {
+        this.renderFlyoutGlobe();
+        this.flyoutGlobe.classList.add("active");
+      }
+    });
+
+    // Close flyouts on click outside
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".header-icon-wrap") && !e.target.closest("#headerMenuBtn")) {
+        this.closeAllFlyouts();
+      }
+    });
     
     document.getElementById("brandLogo").addEventListener("click", (e) => {
       e.preventDefault();
@@ -263,19 +367,37 @@ const App = {
     this.statusTabBtn.addEventListener("click", () => {
       this.statusTabBtn.classList.add("active");
       this.pinTabBtn.classList.remove("active");
+      this.photoTabBtn.classList.remove("active");
       this.composerPinRow.classList.remove("visible");
+      this.composerPhotoRow.style.display = "none";
       this.composerText.placeholder = "Apa yang sedang Anda pikirkan?";
     });
+
     this.pinTabBtn.addEventListener("click", () => {
       this.pinTabBtn.classList.add("active");
       this.statusTabBtn.classList.remove("active");
+      this.photoTabBtn.classList.remove("active");
       this.composerPinRow.classList.add("visible");
+      this.composerPhotoRow.style.display = "none";
       this.composerText.placeholder = "Contoh: Invite PIN BB baru gue ya, baru ganti Onyx.. No spam!";
       const user = Storage.getCurrentUser();
       if (user && user.pinBb) {
         this.composerPinInput.value = user.pinBb;
       }
     });
+
+    this.photoTabBtn.addEventListener("click", () => {
+      this.photoTabBtn.classList.add("active");
+      this.statusTabBtn.classList.remove("active");
+      this.pinTabBtn.classList.remove("active");
+      this.composerPinRow.classList.remove("visible");
+      this.composerPhotoRow.style.display = "block";
+      this.composerText.placeholder = "Tuliskan keterangan untuk foto Anda...";
+    });
+
+    // Photo input change handler with 1-photo-per-day enforcement
+    this.composerPhotoInput.addEventListener("change", (e) => this.handlePhotoSelection(e));
+    this.btnRemovePhoto.addEventListener("click", () => this.handleRemoveSelectedPhoto());
 
     this.composerForm.addEventListener("submit", (e) => this.handleCreatePost(e));
 
@@ -295,7 +417,7 @@ const App = {
       }
     });
 
-    // Retro games nostalgic click handlers
+    // Retro games click handlers
     document.getElementById("gameNinjaSaga").addEventListener("click", (e) => {
       e.preventDefault();
       this.showNostalgiaModal(
@@ -329,6 +451,13 @@ const App = {
          <button class="btn-classic-share" onclick="App.showToast('Anda telah mencolek balik Dian!'); App.modalOverlay.classList.remove('active');">Colek Balik</button>`
       );
     });
+  },
+
+  closeAllFlyouts() {
+    this.flyoutFriends.classList.remove("active");
+    this.flyoutMessages.classList.remove("active");
+    this.flyoutGlobe.classList.remove("active");
+    this.headerMenu.classList.remove("active");
   },
 
   checkSession() {
@@ -365,10 +494,289 @@ const App = {
 
     this.renderPosts();
     this.renderChatFriends();
+    this.renderSidebarOnlineFriends();
+    this.updateNotificationBadges();
     this.renderProfileData(user);
     this.showHomeView();
   },
 
+  // Notification badges updater
+  updateNotificationBadges() {
+    const requests = Storage.getFriendRequests();
+    const threads = Storage.getMessageThreads();
+    const notifs = Storage.getNotifications();
+
+    const unreadMsgs = threads.filter(t => t.unread).length;
+    const unreadNotifs = notifs.filter(n => n.unread).length;
+
+    this.badgeFriends.textContent = requests.length;
+    this.badgeFriends.style.display = requests.length > 0 ? "inline-block" : "none";
+
+    this.badgeMessages.textContent = unreadMsgs;
+    this.badgeMessages.style.display = unreadMsgs > 0 ? "inline-block" : "none";
+
+    this.badgeGlobe.textContent = unreadNotifs;
+    this.badgeGlobe.style.display = unreadNotifs > 0 ? "inline-block" : "none";
+  },
+
+  // 1. Friend Requests Flyout
+  renderFlyoutFriends() {
+    const requests = Storage.getFriendRequests();
+    this.flyoutFriendsList.innerHTML = "";
+
+    if (requests.length === 0) {
+      this.flyoutFriendsList.innerHTML = `<div style="padding:16px;text-align:center;color:#666;">Tidak ada permintaan pertemanan baru.</div>`;
+      return;
+    }
+
+    requests.forEach(req => {
+      const item = document.createElement("div");
+      item.className = "flyout-item";
+      item.innerHTML = `
+        <img class="flyout-item-avatar" src="${req.avatar}" alt="${req.name}" />
+        <div class="flyout-item-body">
+          <div class="flyout-item-title"><strong>${this.escapeHtml(req.name)}</strong></div>
+          <div class="flyout-item-time">${req.mutual} teman yang sama</div>
+          <div class="flyout-btn-row">
+            <button class="btn-confirm-friend" onclick="App.confirmFriendRequest('${req.id}')">Konfirmasi</button>
+            <button class="btn-remove-request" onclick="App.removeFriendRequest('${req.id}')">Hapus Permintaan</button>
+          </div>
+        </div>
+      `;
+      this.flyoutFriendsList.appendChild(item);
+    });
+  },
+
+  confirmFriendRequest(reqId) {
+    const requests = Storage.getFriendRequests();
+    const req = requests.find(r => r.id === reqId);
+    if (!req) return;
+
+    // Add to friends list
+    const friends = Storage.getFriends();
+    friends.unshift({
+      id: "f_" + Date.now(),
+      name: req.name,
+      avatar: req.avatar,
+      online: true,
+      pin: req.pin,
+      status: req.status || "Aktif via RuangWaktu"
+    });
+    Storage.setFriends(friends);
+
+    // Remove from requests
+    const updatedReqs = requests.filter(r => r.id !== reqId);
+    Storage.setFriendRequests(updatedReqs);
+
+    this.updateNotificationBadges();
+    this.renderFlyoutFriends();
+    this.renderChatFriends();
+    this.renderSidebarOnlineFriends();
+    playChatNotificationSound();
+    this.showToast(`Anda sekarang berteman dengan ${req.name}!`);
+  },
+
+  removeFriendRequest(reqId) {
+    const requests = Storage.getFriendRequests().filter(r => r.id !== reqId);
+    Storage.setFriendRequests(requests);
+    this.updateNotificationBadges();
+    this.renderFlyoutFriends();
+  },
+
+  // 2. Messages Flyout
+  renderFlyoutMessages() {
+    const threads = Storage.getMessageThreads();
+    this.flyoutMessagesList.innerHTML = "";
+
+    if (threads.length === 0) {
+      this.flyoutMessagesList.innerHTML = `<div style="padding:16px;text-align:center;color:#666;">Kotak masuk Anda kosong.</div>`;
+      return;
+    }
+
+    threads.forEach(th => {
+      const item = document.createElement("div");
+      item.className = `flyout-item ${th.unread ? 'unread' : ''}`;
+      item.onclick = () => this.handleOpenMessageThread(th.id);
+      item.innerHTML = `
+        <img class="flyout-item-avatar" src="${th.avatar}" alt="${th.name}" />
+        <div class="flyout-item-body">
+          <div class="flyout-item-title">
+            <span style="color:#3b5998;font-weight:bold;">${this.escapeHtml(th.name)}</span>
+          </div>
+          <div style="font-size:11px;color:#444;margin-top:2px;">${this.escapeHtml(th.snippet)}</div>
+          <div class="flyout-item-time">${th.time}</div>
+        </div>
+      `;
+      this.flyoutMessagesList.appendChild(item);
+    });
+  },
+
+  handleOpenMessageThread(threadId) {
+    const threads = Storage.getMessageThreads();
+    const th = threads.find(t => t.id === threadId);
+    if (!th) return;
+
+    th.unread = false;
+    Storage.setMessageThreads(threads);
+    this.updateNotificationBadges();
+    this.closeAllFlyouts();
+
+    // Find or create friend object
+    let friends = Storage.getFriends();
+    let friend = friends.find(f => f.id === th.friendId || f.name === th.name);
+    if (!friend) {
+      friend = {
+        id: th.friendId,
+        name: th.name,
+        avatar: th.avatar,
+        online: true,
+        status: "Aktif di obrolan"
+      };
+    }
+
+    this.openChatWindow(friend);
+  },
+
+  openNewMessagePrompt() {
+    this.closeAllFlyouts();
+    const friends = Storage.getFriends();
+    if (friends.length > 0) {
+      this.openChatWindow(friends[0]);
+    }
+  },
+
+  // 3. Globe Notifications Flyout
+  renderFlyoutGlobe() {
+    const notifs = Storage.getNotifications();
+    this.flyoutGlobeList.innerHTML = "";
+
+    if (notifs.length === 0) {
+      this.flyoutGlobeList.innerHTML = `<div style="padding:16px;text-align:center;color:#666;">Tidak ada pemberitahuan baru.</div>`;
+      return;
+    }
+
+    notifs.forEach(n => {
+      const item = document.createElement("div");
+      item.className = `flyout-item ${n.unread ? 'unread' : ''}`;
+      item.onclick = () => this.handleNotificationClick(n.id);
+      item.innerHTML = `
+        <div style="font-size:18px;width:32px;text-align:center;flex-shrink:0;">${n.icon}</div>
+        <div class="flyout-item-body">
+          <div class="flyout-item-title">${n.text}</div>
+          <div class="flyout-item-time">${n.time}</div>
+          ${n.canPokeBack ? `
+            <button class="btn-classic-share" style="margin-top:4px;padding:2px 6px;font-size:10px;" onclick="event.stopPropagation(); App.pokeFriend('${n.friendName}');">Colek Balik</button>
+          ` : ''}
+        </div>
+      `;
+      this.flyoutGlobeList.appendChild(item);
+    });
+  },
+
+  handleNotificationClick(notifId) {
+    const notifs = Storage.getNotifications();
+    const n = notifs.find(item => item.id === notifId);
+    if (n) {
+      n.unread = false;
+      Storage.setNotifications(notifs);
+      this.updateNotificationBadges();
+      this.renderFlyoutGlobe();
+    }
+  },
+
+  markAllNotificationsRead() {
+    const notifs = Storage.getNotifications();
+    notifs.forEach(n => n.unread = false);
+    Storage.setNotifications(notifs);
+    this.updateNotificationBadges();
+    this.renderFlyoutGlobe();
+    this.showToast("Semua pemberitahuan ditandai telah dibaca.");
+  },
+
+  // Right Sidebar Online Friends Widget
+  renderSidebarOnlineFriends() {
+    const friends = Storage.getFriends();
+    const onlineFriends = friends.filter(f => f.online);
+
+    this.sidebarOnlineFriendsList.innerHTML = "";
+    this.sidebarOnlineCount.textContent = onlineFriends.length;
+
+    if (onlineFriends.length === 0) {
+      this.sidebarOnlineFriendsList.innerHTML = `<div style="color:#777;font-size:10px;padding:6px 0;">Tidak ada teman yang sedang online saat ini.</div>`;
+      return;
+    }
+
+    onlineFriends.forEach(friend => {
+      const row = document.createElement("div");
+      row.className = "sidebar-friend-row";
+      row.onclick = () => this.openChatWindow(friend);
+      row.innerHTML = `
+        <div class="sidebar-friend-left">
+          <img src="${friend.avatar}" class="sidebar-friend-avatar" alt="${friend.name}" />
+          <div class="sidebar-friend-info">
+            <span class="sidebar-friend-name">${this.escapeHtml(friend.name)}</span>
+            <span class="sidebar-friend-sub">${this.escapeHtml(friend.status)}</span>
+          </div>
+        </div>
+        <span class="chat-online-dot"></span>
+      `;
+      this.sidebarOnlineFriendsList.appendChild(row);
+    });
+  },
+
+  // Status Photo Upload with 1-Photo-per-Day Limit
+  handlePhotoSelection(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const currentUser = Storage.getCurrentUser();
+    if (!currentUser) return;
+
+    const today = new Date().toISOString().slice(0, 10);
+    const history = Storage.getPhotoUploadHistory();
+
+    // Check if user has already uploaded a photo today
+    if (history[currentUser.id] === today) {
+      this.showNostalgiaModal(
+        "⚠️ Batas Kuota Foto Tercapai (1 Hari 1 Foto)",
+        `<p style="margin-bottom:8px;">Maaf! Anda sudah mengunggah <strong>1 foto hari ini</strong>.</p>
+         <p style="margin-bottom:8px;">Sesuai ketentuan hemat kuota internet era Facebook 2011, setiap akun memiliki batas <strong>maksimal 1 foto per hari</strong>.</p>
+         <p style="color:#666;font-size:11px;">Silakan unggah foto baru lagi besok. Anda tetap dapat membagikan status teks atau PIN BBM kapan saja tanpa batasan.</p>`
+      );
+      this.composerPhotoInput.value = "";
+      this.handleRemoveSelectedPhoto();
+      return;
+    }
+
+    // Read and preview file
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      this.currentSelectedPhotoData = event.target.result;
+      this.photoPreviewImg.src = this.currentSelectedPhotoData;
+      this.photoPreviewWrap.style.display = "flex";
+      this.photoStatusText.textContent = `${file.name} (Siap diunggah - 1/1 foto hari ini)`;
+    };
+    reader.readAsDataURL(file);
+  },
+
+  handleRemoveSelectedPhoto() {
+    this.currentSelectedPhotoData = "";
+    this.composerPhotoInput.value = "";
+    this.photoPreviewImg.src = "";
+    this.photoPreviewWrap.style.display = "none";
+    this.photoStatusText.textContent = "Belum ada foto yang dipilih";
+  },
+
+  openPhotoModal(photoUrl) {
+    this.showNostalgiaModal(
+      "Lihat Foto Penuh (RuangWaktu 2011)",
+      `<div style="text-align:center;">
+         <img src="${photoUrl}" style="max-width:100%;max-height:480px;border:1px solid #ccc;padding:2px;background:#fff;" alt="Foto" />
+       </div>`
+    );
+  },
+
+  // Auth Handlers
   handleLogin(e) {
     e.preventDefault();
     const username = this.loginUsername.value.trim().toLowerCase();
@@ -416,7 +824,6 @@ const App = {
       return;
     }
 
-    // Generate random PIN BB in classic format: e.g. 28A9F10B
     const hex = Math.floor(Math.random() * 0xFFFFFF).toString(16).toUpperCase().padStart(6, '0');
     const randomPin = `28${hex}`;
 
@@ -477,13 +884,23 @@ const App = {
   handleCreatePost(e) {
     e.preventDefault();
     const content = this.composerText.value.trim();
-    if (!content) return;
+    const hasPhoto = !!this.currentSelectedPhotoData;
+
+    if (!content && !hasPhoto) return;
 
     const currentUser = Storage.getCurrentUser();
     const device = this.composerDevice.value;
     const pinVal = this.composerPinRow.classList.contains("visible") 
       ? this.composerPinInput.value.trim() 
       : "";
+
+    // Save photo upload date restriction if photo is uploaded
+    if (hasPhoto) {
+      const today = new Date().toISOString().slice(0, 10);
+      const history = Storage.getPhotoUploadHistory();
+      history[currentUser.id] = today;
+      Storage.setPhotoUploadHistory(history);
+    }
 
     const newPost = {
       id: "post_" + Date.now(),
@@ -494,6 +911,7 @@ const App = {
       device: device,
       content: content,
       pinBb: pinVal,
+      photo: this.currentSelectedPhotoData || "",
       likes: [],
       comments: []
     };
@@ -503,8 +921,9 @@ const App = {
     Storage.setPosts(posts);
 
     this.composerText.value = "";
+    this.handleRemoveSelectedPhoto();
     this.renderPosts();
-    this.showToast("Status Anda berhasil diterbitkan!");
+    this.showToast(hasPhoto ? "Status beserta foto berhasil diterbitkan! (Kuota hari ini terpakai: 1/1)" : "Status Anda berhasil diterbitkan!");
 
     // Simulate auto-like from one nostalgic friend
     setTimeout(() => {
@@ -558,6 +977,11 @@ const App = {
           </div>
         </div>
         <div class="feed-content">${this.escapeHtml(post.content)}</div>
+        ${post.photo ? `
+          <div class="feed-photo-container">
+            <img src="${post.photo}" class="feed-photo-image" alt="Foto status" onclick="App.openPhotoModal('${post.photo}')" />
+          </div>
+        ` : ''}
         ${post.pinBb ? `
           <div class="feed-bbm-pin-box">
             <span>📱 <strong>PIN BBM:</strong> <span style="font-family:monospace;font-weight:bold;">${this.escapeHtml(post.pinBb)}</span></span>
@@ -624,6 +1048,11 @@ const App = {
           </div>
         </div>
         <div class="feed-content">${this.escapeHtml(post.content)}</div>
+        ${post.photo ? `
+          <div class="feed-photo-container">
+            <img src="${post.photo}" class="feed-photo-image" alt="Foto status" onclick="App.openPhotoModal('${post.photo}')" />
+          </div>
+        ` : ''}
       `;
       this.profileFeedStream.appendChild(card);
     });

@@ -27,21 +27,62 @@
 
       <div class="header-right">
         <div class="header-icons-group">
-          <!-- Friend Requests Icon -->
-          <button class="icon-badge-btn" id="btnNotifFriends" title="Permintaan Pertemanan" aria-label="Permintaan Pertemanan">
-            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-            <span class="notif-badge">2</span>
-          </button>
-          <!-- Messages Icon -->
-          <button class="icon-badge-btn" id="btnNotifMessages" title="Pesan" aria-label="Pesan">
-            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
-            <span class="notif-badge">3</span>
-          </button>
-          <!-- Notifications Globe Icon -->
-          <button class="icon-badge-btn" id="btnNotifGlobe" title="Pemberitahuan" aria-label="Pemberitahuan">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            <span class="notif-badge">5</span>
-          </button>
+          <!-- Friend Requests Icon & Flyout -->
+          <div class="header-icon-wrap">
+            <button class="icon-badge-btn" id="btnNotifFriends" title="Permintaan Pertemanan" aria-label="Permintaan Pertemanan">
+              <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+              <span class="notif-badge" id="badgeFriends">2</span>
+            </button>
+            <div class="flyout-panel" id="flyoutFriends">
+              <div class="flyout-arrow" style="right: 86px;"></div>
+              <div class="flyout-header">
+                <span>Permintaan Pertemanan</span>
+                <a href="#" onclick="App.showToast('Mencari teman baru di ruangwaktu 2011...'); return false;">Cari Teman</a>
+              </div>
+              <div class="flyout-content" id="flyoutFriendsList"></div>
+              <div class="flyout-footer">
+                <a href="#" onclick="alert('Semua permintaan pertemanan aktif telah ditampilkan.'); return false;">Lihat Semua Permintaan Pertemanan</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Messages Icon & Flyout -->
+          <div class="header-icon-wrap">
+            <button class="icon-badge-btn" id="btnNotifMessages" title="Pesan" aria-label="Pesan">
+              <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+              <span class="notif-badge" id="badgeMessages">3</span>
+            </button>
+            <div class="flyout-panel" id="flyoutMessages">
+              <div class="flyout-arrow" style="right: 58px;"></div>
+              <div class="flyout-header">
+                <span>Kotak Masuk (Pesan)</span>
+                <a href="#" onclick="App.openNewMessagePrompt(); return false;">Kirim Pesan Baru</a>
+              </div>
+              <div class="flyout-content" id="flyoutMessagesList"></div>
+              <div class="flyout-footer">
+                <a href="#" onclick="App.showToast('Membuka obrolan teman...'); document.getElementById('chatSidebar').classList.add('open'); return false;">Lihat Semua di Obrolan</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notifications Globe Icon & Flyout -->
+          <div class="header-icon-wrap">
+            <button class="icon-badge-btn" id="btnNotifGlobe" title="Pemberitahuan" aria-label="Pemberitahuan">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+              <span class="notif-badge" id="badgeGlobe">5</span>
+            </button>
+            <div class="flyout-panel" id="flyoutGlobe">
+              <div class="flyout-arrow" style="right: 28px;"></div>
+              <div class="flyout-header">
+                <span>Pemberitahuan</span>
+                <a href="#" onclick="App.markAllNotificationsRead(); return false;">Tandai Telah Dibaca</a>
+              </div>
+              <div class="flyout-content" id="flyoutGlobeList"></div>
+              <div class="flyout-footer">
+                <a href="#" onclick="App.showToast('Semua riwayat pemberitahuan aktif'); return false;">Lihat Semua Pemberitahuan</a>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="header-user-nav">
@@ -255,6 +296,9 @@
             <button type="button" class="composer-tab" id="pinTabBtn">
               📱 Pasang PIN BB
             </button>
+            <button type="button" class="composer-tab" id="photoTabBtn">
+              📷 Tambah Foto
+            </button>
           </div>
 
           <form id="composerForm">
@@ -264,6 +308,24 @@
               <div class="composer-pin-input-row" id="composerPinRow">
                 <label for="composerPinInput"><strong>PIN BB yang dipajang:</strong></label>
                 <input type="text" class="composer-pin-field" id="composerPinInput" placeholder="Contoh: 28A9F10B" />
+              </div>
+
+              <!-- Photo Upload Row with 1-Photo-per-Day limit -->
+              <div class="composer-photo-row" id="composerPhotoRow" style="display: none;">
+                <div class="photo-limit-notice" id="photoLimitNotice">
+                  <span>📷 <strong>Ketentuan Foto 2011:</strong> Batasan hemat kuota internet <strong>1 hari maksimal 1 foto</strong>.</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+                  <label for="composerPhotoInput" class="btn-classic-upload">
+                    📁 Pilih Foto dari Komputer...
+                  </label>
+                  <input type="file" id="composerPhotoInput" accept="image/*" style="display: none;" />
+                  <span id="photoStatusText" style="font-size: 11px; color: #666;">Belum ada foto yang dipilih</span>
+                </div>
+                <div class="photo-preview-wrap" id="photoPreviewWrap" style="display: none;">
+                  <img id="photoPreviewImg" class="photo-preview-thumb" src="" alt="Pratinjau Foto" />
+                  <button type="button" class="btn-remove-photo" id="btnRemovePhoto" title="Batalkan Foto">✕ Hapus Foto</button>
+                </div>
               </div>
             </div>
 
@@ -372,6 +434,20 @@
         <div class="sponsored-ad-item">
           <a href="#" class="ad-title" onclick="alert('Modem Flash 7.2 Mbps: Paket internet unlimited 50rb/bulan!'); return false;">Modem USB Flash 3G 7.2Mbps</a>
           <div class="ad-desc">Internet kencang buat browsing Facebook dan download lagu di 4shared tanpa putus. Bonus perdana kuota 2GB!</div>
+        </div>
+      </div>
+
+      <!-- Right Sidebar Online Friends Widget (Di Bawah Disponsori) -->
+      <div class="right-widget" id="sidebarOnlineWidget">
+        <div class="widget-title">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span class="chat-online-dot"></span>
+            <span>Teman Online (<span id="sidebarOnlineCount">5</span>)</span>
+          </div>
+          <span style="font-size: 9px; color: #888; text-transform: none; font-weight: normal;">Klik untuk Chat</span>
+        </div>
+        <div class="sidebar-online-friends-list" id="sidebarOnlineFriendsList">
+          <!-- Populated dynamically by JavaScript -->
         </div>
       </div>
     </aside>

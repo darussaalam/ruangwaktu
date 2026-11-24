@@ -19,10 +19,17 @@ Website nostalgia jejaring sosial ikonik era **Facebook 2011**, dibuat khusus ag
    - Nol gradien ungu generik AI, nol glassmorphism berlebihan, dan nol bentuk kapsul tak bertujuan.
 
 3. **Fitur Status & Budaya Internet 2011:**
-   - Kotak pembuat status dengan tab *Perbarui Status* dan *Pasang PIN BB*.
+   - Kotak pembuat status dengan tab *Perbarui Status*, *Pasang PIN BB*, dan *📷 Tambah Foto*.
+   - **Fitur Upload Foto dengan Pembatasan 1 Hari 1 Foto:** Pengguna dapat mengunggah foto dari komputernya untuk dilampirkan pada status. Sistem `localStorage` membatasi pengunggahan maksimal 1 foto per hari sesuai tema hemat kuota internet 2011. Foto dapat diklik untuk diperbesar.
    - Pilihan pengiriman khas: *melalui BlackBerry® Smartphones*, *melalui BlackBerry Bold 9700 Onyx*, *melalui Facebook Zero (0.facebook.com)*, dan *melalui Web*.
    - Banner PIN BBM yang bisa langsung disalin dengan 1 klik.
    - Interaksi status lengkap: **Suka** (dengan penghitung dinamis), **Komentari**, **Bagikan**, dan **Colek Penulis**.
+
+4. **Flyout Notifikasi, Pesan & Teman yang Berfungsi Penuh:**
+   - **Ikon Teman (Permintaan Pertemanan):** Menampilkan flyout daftar permintaan pertemanan dengan tombol *Konfirmasi* dan *Hapus Permintaan*. Mengonfirmasi pertemanan akan langsung menambahkan teman ke daftar teman online dan memperbarui badge.
+   - **Ikon Pesan (Inbox):** Menampilkan percakapan pesan terbaru. Mengklik pesan akan langsung membuka jendela chat mandiri dengan teman tersebut dan menandai pesan sebagai terbaca.
+   - **Ikon Bumi (Pemberitahuan):** Menampilkan riwayat suka, komentar, colekan, dan grup. Dilengkapi tombol *Tandai Telah Dibaca*.
+   - **Widget Teman Online di Sidebar Kanan:** Diletakkan persis di bawah widget Disponsori, menampilkan daftar teman online dengan status aktivitas mereka. Mengklik nama teman akan langsung membuka jendela chat aktif.
 
 4. **Obrolan (Chat) Dock Pojok Kanan Bawah:**
    - Tab obrolan di pojok kanan bawah dengan titik hijau status online.

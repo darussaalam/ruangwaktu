@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ruangwaktu - Masuk atau Mendaftar</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%233b5998' rx='4'/><text x='16' y='23' font-family='Tahoma, sans-serif' font-size='20' font-weight='bold' fill='white' text-anchor='middle'>rw</text></svg>">
+</head>
+<body>
+
+  <!-- Top Blue Navigation Bar (Logged In State) -->
+  <header class="top-header" id="topHeader" style="display: none;">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="#" class="brand-logo" id="brandLogo" title="ruangwaktu">
+          <span class="brand-icon">rw</span>
+          <span class="brand-text">ruangwaktu</span>
+        </a>
+        <div class="search-box-wrap">
+          <input type="text" class="search-input" id="headerSearchInput" placeholder="Cari teman, status, atau hal lain..." aria-label="Cari di ruangwaktu" />
+          <button class="search-submit-btn" type="button" aria-label="Kirim Pencarian">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="header-icons-group">
+          <!-- Friend Requests Icon -->
+          <button class="icon-badge-btn" id="btnNotifFriends" title="Permintaan Pertemanan" aria-label="Permintaan Pertemanan">
+            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            <span class="notif-badge">2</span>
+          </button>
+          <!-- Messages Icon -->
+          <button class="icon-badge-btn" id="btnNotifMessages" title="Pesan" aria-label="Pesan">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            <span class="notif-badge">3</span>
+          </button>
+          <!-- Notifications Globe Icon -->
+          <button class="icon-badge-btn" id="btnNotifGlobe" title="Pemberitahuan" aria-label="Pemberitahuan">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <span class="notif-badge">5</span>
+          </button>
+        </div>
+
+        <div class="header-user-nav">
+          <a href="#" class="header-user-link" id="headerProfileLink">
+            <img src="" alt="Avatar" class="header-avatar-thumb" id="headerUserAvatar" />
+            <span id="headerUserName">Profil</span>
+          </a>
+          <a href="#" class="header-nav-link" id="headerHomeLink">Beranda</a>
+        </div>
+
+        <div class="header-divider"></div>
+
+        <div style="position: relative;">
+          <button class="header-dropdown-btn" id="headerMenuBtn" title="Pengaturan Akun" aria-label="Menu Pengaturan">
+            ▼
+          </button>
+          <div class="header-dropdown-menu" id="headerMenu">
+            <a href="#" id="menuProfileLink">Kronologi Profil</a>
+            <a href="#" id="menuSettingsLink">Pengaturan Akun</a>
+            <div class="menu-separator"></div>
+            <button type="button" id="headerLogoutBtn">Keluar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Guest / Auth Page View -->
+  <main class="auth-page-container" id="authPage">
+    <!-- Top Auth Header Strip -->
+    <div class="auth-header-strip">
+      <div class="auth-header-inner">
+        <div class="brand-logo">
+          <span class="brand-icon">rw</span>
+          <span class="brand-text">ruangwaktu</span>
+        </div>
+
+        <!-- Quick Login Form Strip -->
+        <form class="login-form-strip" id="loginForm">
+          <div class="login-field-group">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" class="login-input" required autocomplete="username" />
+            <div class="login-subtext">
+              <label><input type="checkbox" checked /> Biarkan saya tetap masuk</label>
+            </div>
+          </div>
+          <div class="login-field-group">
+            <label for="loginPassword">Kata Sandi</label>
+            <input type="password" id="loginPassword" class="login-input" required autocomplete="current-password" />
+            <div class="login-subtext">
+              <a href="#" onclick="alert('Tips: Cukup ingat username dan kata sandi yang Anda buat.'); return false;" style="color:#c0cdf0;">Lupa kata sandi Anda?</a>
+            </div>
+          </div>
+          <button type="submit" class="btn-classic-login">Masuk</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Auth Body -->
+    <div class="auth-body-container">
+      <div class="auth-welcome-left">
+        <h1 class="auth-welcome-title">RuangWaktu membantu Anda terhubung dan berbagi dengan orang-orang dalam kehidupan Anda.</h1>
+        
+        <!-- Ketentuan Akun & Pengingat Penting -->
+        <div class="auth-terms-box">
+          <h4>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#3b5998"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            Ketentuan & Kenyamanan Akun RuangWaktu
+          </h4>
+          <ul>
+            <li><strong>Username Bebas / Asal:</strong> Anda tidak diwajibkan menggunakan nama pribadi atau identitas asli. Gunakan nama panggilan, nama panggung, atau nama samaran yang Anda sukai.</li>
+            <li><strong>Harap Diingat:</strong> Ingat username dan kata sandi sederhana yang Anda buat agar dapat login kembali dengan mudah di browser ini.</li>
+            <li><strong>Langsung Online di GitHub Pages:</strong> Website ini berjalan sepenuhnya di browser (client-side) tanpa server database rumit, sehingga 100% aman dan siap di-hosting gratis di GitHub Pages.</li>
+          </ul>
+
+          <div class="demo-account-box">
+            <div class="demo-account-info">
+              <strong>Mau langsung nostalgia tanpa daftar?</strong><br>
+              Cukup klik tombol untuk masuk ke akun Rizky 'Anak Warnet'.
+            </div>
+            <button type="button" class="btn-quick-demo" id="demoLoginBtn">Masuk Akun Demo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Form Card -->
+      <div class="auth-register-right">
+        <h2 class="reg-title">Mendaftar</h2>
+        <div class="reg-subtitle">Gratis dan akan selalu begitu.</div>
+
+        <form id="registerForm">
+          <div class="reg-form-row">
+            <input type="text" id="regFirstname" class="reg-input" placeholder="Nama Depan" required />
+            <input type="text" id="regLastname" class="reg-input" placeholder="Nama Belakang" />
+          </div>
+
+          <div class="reg-form-row">
+            <input type="text" id="regUsername" class="reg-input" placeholder="Buat Username (Contoh: dimas2011)" required autocomplete="username" />
+          </div>
+
+          <div class="reg-form-row">
+            <input type="password" id="regPassword" class="reg-input" placeholder="Kata Sandi Baru" required autocomplete="new-password" />
+          </div>
+
+          <div class="reg-birth-row">
+            <label>Tanggal Lahir:</label>
+            <div class="reg-birth-selects">
+              <select id="regDay" aria-label="Hari">
+                <option value="17">17</option>
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+              </select>
+              <select id="regMonth" aria-label="Bulan">
+                <option value="8">Agu</option>
+                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">Mar</option>
+                <option value="4">Apr</option>
+                <option value="5">Mei</option>
+                <option value="6">Jun</option>
+                <option value="7">Jul</option>
+                <option value="9">Sep</option>
+                <option value="10">Okt</option>
+                <option value="11">Nov</option>
+                <option value="12">Des</option>
+              </select>
+              <select id="regYear" aria-label="Tahun">
+                <option value="1995">1995</option>
+                <option value="1996">1996</option>
+                <option value="1997">1997</option>
+                <option value="1998">1998</option>
+                <option value="1994">1994</option>
+                <option value="1993">1993</option>
+                <option value="1992">1992</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="reg-gender-row">
+            <label><input type="radio" name="gender" value="Perempuan" /> Perempuan</label>
+            <label><input type="radio" name="gender" value="Laki-laki" checked /> Laki-laki</label>
+          </div>
+
+          <div class="reg-help-text">
+            Dengan mengklik Mendaftar, Anda menyetujui Ketentuan dan nostalgia internet klasik era 2011.
+          </div>
+
+          <button type="submit" class="btn-classic-register">Mendaftar</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Logged-in Main Application Container -->
+  <div class="main-wrapper" id="mainApp" style="display: none;">
+    <!-- Left Navigation Sidebar -->
+    <aside class="left-col" aria-label="Menu Samping">
+      <a href="#" class="left-user-card" id="leftEditProfile">
+        <img src="" alt="Avatar" class="left-avatar" id="leftAvatar" />
+        <div class="left-user-info">
+          <span class="left-user-name" id="leftUserName">Nama Pengguna</span>
+          <span class="left-edit-profile">Sunting Profil</span>
+        </div>
+      </a>
+
+      <div class="nav-section-title">FAVORIT</div>
+      <ul class="nav-list">
+        <li class="nav-item active"><a href="#" id="navFeed"><span class="nav-icon">📰</span> Kabar Berita <span class="nav-badge-count">9+</span></a></li>
+        <li class="nav-item"><a href="#" id="navMessages"><span class="nav-icon">💬</span> Pesan <span class="nav-badge-count">3</span></a></li>
+        <li class="nav-item"><a href="#" id="navProfile"><span class="nav-icon">👤</span> Kronologi Profil</a></li>
+        <li class="nav-item"><a href="#" id="navColek"><span class="nav-icon">👉</span> Pusat Colekan (Pokes)</a></li>
+      </ul>
+
+      <div class="nav-section-title">APLIKASI & GAME 2011</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#" id="gameNinjaSaga"><span class="nav-icon">🥷</span> Ninja Saga</a></li>
+        <li class="nav-item"><a href="#" id="gameFarmVille"><span class="nav-icon">🌾</span> FarmVille</a></li>
+        <li class="nav-item"><a href="#" onclick="alert('Texas HoldEm Poker: Meja penuh! Beli chip di warnet terdekat.'); return false;"><span class="nav-icon">🃏</span> Texas HoldEm Poker</a></li>
+      </ul>
+
+      <div class="nav-section-title">GRUP NOSTALGIA</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#" onclick="App.showToast('Grup: Komunitas Barter PIN BB & Jempolers 2011'); return false;"><span class="nav-icon">👥</span> Barter PIN BB 2011</a></li>
+        <li class="nav-item"><a href="#" onclick="App.showToast('Grup: Persatuan Pengguna BlackBerry Gemini & Onyx'); return false;"><span class="nav-icon">👥</span> Anak BB Gemini-Onyx</a></li>
+      </ul>
+    </aside>
+
+    <!-- Center Column (Feed / Profile Views) -->
+    <section class="center-col">
+      <!-- Home News Feed View -->
+      <div id="homeView">
+        <!-- BBM PIN Nostalgia Banner -->
+        <div class="bbm-banner">
+          <div class="bbm-banner-content">
+            <span class="bbm-icon">BBM</span>
+            <span class="bbm-text">PIN BB Anda: <span class="bbm-pin-badge" id="bbmPinDisplay">28B7CD31</span></span>
+          </div>
+          <button class="btn-copy-pin" onclick="App.copyToClipboard(document.getElementById('bbmPinDisplay').textContent)">Salin PIN</button>
+        </div>
+
+        <!-- Status Publisher Box -->
+        <div class="composer-box">
+          <div class="composer-tabs">
+            <button type="button" class="composer-tab active" id="statusTabBtn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+              Perbarui Status
+            </button>
+            <button type="button" class="composer-tab" id="pinTabBtn">
+              📱 Pasang PIN BB
+            </button>
+          </div>
+
+          <form id="composerForm">
+            <div class="composer-body">
+              <textarea class="composer-textarea" id="composerText" placeholder="Apa yang sedang Anda pikirkan?" required></textarea>
+              
+              <div class="composer-pin-input-row" id="composerPinRow">
+                <label for="composerPinInput"><strong>PIN BB yang dipajang:</strong></label>
+                <input type="text" class="composer-pin-field" id="composerPinInput" placeholder="Contoh: 28A9F10B" />
+              </div>
+            </div>
+
+            <div class="composer-footer">
+              <div class="composer-options">
+                <span>Kirim via:</span>
+                <select class="composer-select" id="composerDevice">
+                  <option value="melalui BlackBerry® Smartphones">BlackBerry® Smartphones</option>
+                  <option value="melalui BlackBerry Bold 9700 Onyx">BlackBerry Onyx</option>
+                  <option value="melalui BlackBerry Curve 8520 Gemini">BlackBerry Gemini</option>
+                  <option value="melalui Telkomsel Facebook 0 (Zero)">Facebook Zero (0.facebook.com)</option>
+                  <option value="melalui Web">Web Komputer</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-classic-share">Bagikan</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- News Feed Stream -->
+        <div class="feed-stream" id="feedStream" role="feed"></div>
+      </div>
+
+      <!-- Profile View (Kronologi Dinding) -->
+      <div class="profile-view-container" id="profileView">
+        <div class="profile-header-card">
+          <img src="" alt="Avatar Profil" class="profile-large-avatar" id="profileAvatar" />
+          <div class="profile-header-details">
+            <h2 class="profile-header-name" id="profileName">Nama Profil</h2>
+            <div class="profile-header-pin">📱 PIN BBM: <strong id="profilePinText">28B7CD31</strong></div>
+            <div class="profile-info-grid">
+              <span class="info-label">Status Hubungan:</span>
+              <span class="info-value" id="profileRelationship">Lajang</span>
+              <span class="info-label">Pendidikan:</span>
+              <span class="info-value" id="profileSchool">SMA Negeri 1 (2011)</span>
+              <span class="info-label">Tentang Saya:</span>
+              <span class="info-value" id="profileBio">Nostalgia era Facebook klasik 2011.</span>
+              <span class="info-label">Bergabung:</span>
+              <span class="info-value" id="profileJoined">2011</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-tabs-bar">
+          <div class="profile-tab-item active">Dinding (Wall)</div>
+          <div class="profile-tab-item" onclick="App.showToast('Fitur Foto: Tersimpan di album kenangan 2011')">Foto</div>
+          <div class="profile-tab-item" onclick="App.showToast('Teman: 384 teman bersama')">Teman (384)</div>
+        </div>
+
+        <!-- User's Personal Wall Stream -->
+        <div class="feed-stream" id="profileFeedStream" style="margin-top: 10px;"></div>
+      </div>
+    </section>
+
+    <!-- Right Sidebar Column -->
+    <aside class="right-col" aria-label="Panel Samping Kanan">
+      <!-- Friend Requests Widget -->
+      <div class="right-widget">
+        <div class="widget-title">
+          <span>Permintaan Pertemanan</span>
+          <a href="#" onclick="alert('Semua permintaan pertemanan telah ditampilkan.'); return false;">Lihat Semua</a>
+        </div>
+        <div class="friend-requests-list">
+          <div class="request-card" id="reqCard1">
+            <img class="request-avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=Agus&backgroundColor=ffd5dc" alt="Agus" />
+            <div class="request-details">
+              <a href="#" class="request-name">Agus 'Anak Skate'</a>
+              <div class="request-mutual">14 teman yang sama</div>
+              <div class="request-btn-row">
+                <button class="btn-confirm-friend" onclick="document.getElementById('reqCard1').style.display='none'; App.showToast('Agus telah menjadi teman Anda!');">Konfirmasi</button>
+                <button class="btn-remove-request" onclick="document.getElementById('reqCard1').style.display='none';">Hapus</button>
+              </div>
+            </div>
+          </div>
+          <div class="request-card" id="reqCard2">
+            <img class="request-avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=Nabila&backgroundColor=c0aede" alt="Nabila" />
+            <div class="request-details">
+              <a href="#" class="request-name">Nabila Cantikzz</a>
+              <div class="request-mutual">8 teman yang sama</div>
+              <div class="request-btn-row">
+                <button class="btn-confirm-friend" onclick="document.getElementById('reqCard2').style.display='none'; App.showToast('Nabila telah menjadi teman Anda!');">Konfirmasi</button>
+                <button class="btn-remove-request" onclick="document.getElementById('reqCard2').style.display='none';">Hapus</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Birthday Widget -->
+      <div class="right-widget">
+        <div class="widget-title">Ulang Tahun Hari Ini</div>
+        <div class="birthday-widget-row">
+          <span class="birthday-icon">🎁</span>
+          <span>Hari ini adalah ulang tahun <strong>Dimas Satria</strong> dan 2 teman lainnya.</span>
+        </div>
+      </div>
+
+      <!-- Classic 2011 Retro Ads -->
+      <div class="right-widget">
+        <div class="widget-title">Disponsori</div>
+        <div class="sponsored-ad-item">
+          <a href="#" class="ad-title" onclick="alert('Iklan Kaskus: Silakan kunjungi FJB Kaskus!'); return false;">Kaos Distro & Kaskus Regional</a>
+          <div class="ad-desc">Bahan katun combed 30s sablon rubber. COD Jakarta atau kirim via JNE. Cendol gratis untuk pembeli pertama!</div>
+        </div>
+        <hr style="border:none;border-top:1px solid #e5e5e5;margin:6px 0;">
+        <div class="sponsored-ad-item">
+          <a href="#" class="ad-title" onclick="alert('Modem Flash 7.2 Mbps: Paket internet unlimited 50rb/bulan!'); return false;">Modem USB Flash 3G 7.2Mbps</a>
+          <div class="ad-desc">Internet kencang buat browsing Facebook dan download lagu di 4shared tanpa putus. Bonus perdana kuota 2GB!</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Bottom Right Classic Facebook Chat Dock -->
+  <div class="chat-dock-container" id="chatDock">
+    <!-- Active Open Chat Window Popups -->
+    <div id="chatWindowsContainer" style="display: flex; gap: 8px; align-items: flex-end;"></div>
+
+    <!-- Master Chat Online Bar -->
+    <div style="position: relative;">
+      <button class="chat-bar-button" id="chatBarBtn" type="button" aria-label="Buka Obrolan">
+        <div style="display:flex;align-items:center;">
+          <span class="chat-online-dot"></span>
+          <span>Obrolan (<span id="chatOnlineCount">5</span>)</span>
+        </div>
+        <span>▲</span>
+      </button>
+
+      <!-- Chat Online Friends Popup Menu -->
+      <div class="chat-sidebar-popup" id="chatSidebar">
+        <div class="chat-sidebar-header">
+          <span>Teman Online (2011)</span>
+          <span style="font-size:10px;cursor:pointer;" onclick="document.getElementById('chatSidebar').classList.remove('open')">✕</span>
+        </div>
+        <input type="text" class="chat-search-input" id="chatSearchFriend" placeholder="Cari teman..." />
+        <ul class="chat-friends-list" id="chatFriendsList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Dialog (Retro Games & Features) -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span id="modalTitle">Judul Modal</span>
+        <button class="modal-close-btn" id="modalCloseBtn">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn-classic-share" onclick="document.getElementById('modalOverlay').classList.remove('active')">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Alert -->
+  <div class="toast-notice" id="toastNotice" role="status"></div>
+
+  <!-- Accessible Footer -->
+  <footer class="app-footer">
+    <div class="footer-links-row">
+      <a href="#">Bahasa Indonesia</a>
+      <a href="#">English (US)</a>
+      <a href="#">Basa Jawa</a>
+      <a href="#">Bahasa Sunda</a>
+      <a href="#">Tentang RuangWaktu</a>
+      <a href="#">Buat Iklan</a>
+      <a href="#">Buat Halaman</a>
+      <a href="#">Pengembang</a>
+      <a href="#">Privasi</a>
+      <a href="#">Ketentuan</a>
+      <a href="#">Bantuan</a>
+    </div>
+    <div class="footer-copy">
+      <span>ruangwaktu &copy; 2011 · Dibuat untuk mengenang masa keemasan internet Indonesia</span>
+      <span>Siap untuk GitHub Pages</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
